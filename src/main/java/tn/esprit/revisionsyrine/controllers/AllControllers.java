@@ -21,6 +21,9 @@ public class AllControllers {
     public Participant ajouterParticipant (@RequestBody Participant p){
         return allServices.ajouterParticipant(p);
     }
+
+    @PostMapping("/hello")
+    public String helloTest(){return "hello world !!";}
     @PostMapping("/event/addandaffect")
     public Evenement ajoutAffectEvenParticip (@RequestBody Evenement e){
         return allServices.ajoutAffectEvenParticip(e);
