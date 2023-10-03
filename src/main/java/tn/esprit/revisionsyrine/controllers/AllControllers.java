@@ -24,7 +24,7 @@ public class AllControllers {
 
     @PostMapping("/hello")
     public String helloTest(){return "hello world !!";}
-    //skjdfsqsdsrgeiumkj54
+    //skjdfsqsdsrgedfdfdfiumkj54
     @PostMapping("/event/addandaffect")
     public Evenement ajoutAffectEvenParticip (@RequestBody Evenement e){
         return allServices.ajoutAffectEvenParticip(e);
