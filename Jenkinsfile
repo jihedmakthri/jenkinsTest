@@ -45,6 +45,20 @@ pipeline {
             }
         }
 
-        // Add more stages or customize as needed
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    dockerImage = docker.build("jihedmakthri/jenkins-test:${env.BUILD_NUMBER}")
+                }
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: dockerhub_creds, usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                    dockerImage.push()
+                }
+            }
+        }
     }
 }
