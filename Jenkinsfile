@@ -58,7 +58,7 @@ pipeline {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'dockerhub_creds', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
-                    dockerImage.push()}
+                    dockerImage.push("--log-level=debug")}
                 }
             }
         }
