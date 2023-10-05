@@ -60,7 +60,9 @@ pipeline {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: "dockerhub_creds", usernameVariable: "DOCKERHUB_USERNAME", passwordVariable: "DOCKERHUB_PASSWORD")]) {
-                    sh"docker push jihedmakthri/jenkins-test:${imageTag}"}
+                    sh"docker login --username ${DOCKERHUB_USERNAME} --password ${DOCKERHUB_PASSWORD}"
+                    sh"docker push jihedmakthri/jenkins-test:${imageTag}"
+                    }
                 }
             }
         }
