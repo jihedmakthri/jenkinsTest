@@ -48,8 +48,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def buildNumber = currentBuild.number
-                    def imageTag = "1.0.${buildNumber}"
+                    buildNumber = currentBuild.number
+                    imageTag = "1.0.${buildNumber}"
                 withCredentials([usernamePassword(credentialsId: "dockerhub_creds", usernameVariable: "DOCKERHUB_USERNAME", passwordVariable: "DOCKERHUB_PASSWORD")]) {
                     dockerImage = docker.build("jihedmakthri/jenkins-test:${imageTag}")
                     }
@@ -60,7 +60,7 @@ pipeline {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: "dockerhub_creds", usernameVariable: "DOCKERHUB_USERNAME", passwordVariable: "DOCKERHUB_PASSWORD")]) {
-                    dockerImage.push("--log-level=debug")}
+                    sh"docker push jihedmakthri/jenkins-test:${imageTag}"}
                 }
             }
         }
