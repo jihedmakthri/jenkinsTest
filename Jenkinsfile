@@ -49,9 +49,9 @@ pipeline {
             steps {
                 script {
                     def buildNumber = currentBuild.number
-                    def imageTag = "1.0.${buildNumber}"
+                    def imageTag = '1.0.${buildNumber}'
                 withCredentials([usernamePassword(credentialsId: 'dockerhub_creds', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
-                    dockerImage = docker.build("jihedmakthri/jenkins-test:${imageTag}")
+                    dockerImage = docker.build('jihedmakthri/jenkins-test:${imageTag}')
                     }
                 }
             }
